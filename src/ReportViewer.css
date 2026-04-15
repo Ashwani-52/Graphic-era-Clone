@@ -1,0 +1,210 @@
+.report-viewer-page {
+  background-color: #f4f6f8;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+.report-navbar {
+  background-color: #1790d1;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.back-btn {
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.back-btn:hover {
+  opacity: 0.8;
+}
+
+.nav-center {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.nav-right .profile-icon {
+  font-size: 24px;
+}
+
+.report-container {
+  max-width: 900px;
+  margin: 30px auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+}
+
+.report-header img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.action-bar {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  background: #fdfdfd;
+}
+
+.print-btn {
+  background: #1790d1;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.print-btn:hover {
+  background: #1169b8;
+}
+
+.idcard-content {
+  display: flex;
+  padding: 30px;
+  gap: 40px;
+}
+
+.left-section, .right-section {
+  flex: 1;
+}
+
+.photo-container {
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.report-student-photo {
+  width: 130px;
+  height: 130px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 3px solid #1790d1;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.report-photo-placeholder {
+  width: 130px;
+  height: 130px;
+  border-radius: 8px;
+  background: #eef3fa;
+  color: #1790d1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  border: 2px dashed #1790d1;
+}
+
+.student-details-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+}
+
+.layout-block {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.detail-label {
+  color: #6b7280;
+  font-weight: 600;
+  width: 40%;
+}
+
+.detail-value {
+  color: #374151;
+  font-weight: 500;
+  width: 60%;
+  text-align: right;
+  word-break: break-word;
+}
+
+.text-block {
+  width: 100%;
+  text-align: left;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+  }
+  .report-viewer-page {
+    background: white;
+  }
+  .report-navbar, .no-print {
+    display: none !important;
+  }
+  .report-container {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    margin: 0;
+    max-width: 100%;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .idcard-content {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .nav-center {
+    display: none;
+  }
+  
+  .nav-left {
+    font-size: 13px;
+  }
+  
+  .report-container {
+    margin: 15px;
+  }
+}

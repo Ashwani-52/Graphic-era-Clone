@@ -30,6 +30,10 @@ const DEFAULT_DATA = {
   universityRollNo: '3600806',
   highSchoolPct: '70.40',
   intermediatePct: '70.00',
+  bloodGroup: 'B+',
+  address: '123 University Road, Dehradun',
+  validThrough: 'July 2027',
+  emergencyContact: '+91 9876543210',
   status: 'Active',
   photo: null,
 }
@@ -54,7 +58,7 @@ function EditableField({ label, value, fieldKey, editing, onChange, type = 'text
 }
 
 // ─── Main IDCard component ────────────────────────────────────────────────────
-export default function IDCard() {
+export default function IDCard({ onNavigate }) {
   const [data, setData] = useState(() => {
     try {
       const saved = localStorage.getItem('geu_id_card')
@@ -215,7 +219,13 @@ export default function IDCard() {
           {/* ── ID Card Card ── */}
           <div className="section-card">
             <div className="id-card-title">
-                <i className="fa fa-id-card-o" aria-hidden="true" style={{ fontSize: '24px', color: 'red', marginBottom: '5px' }}></i>
+                <i 
+                  className="fa fa-id-card-o" 
+                  aria-hidden="true" 
+                  style={{ fontSize: '24px', color: 'red', marginBottom: '5px', cursor: 'pointer' }}
+                  onClick={() => onNavigate && onNavigate('report')}
+                  title="View ID Card Report"
+                ></i>
                 <span>ID Card</span>
             </div>
             <EditableField label="Father Name" value={current.fatherName} fieldKey="fatherName" editing={editing} onChange={handleChange} />
@@ -233,6 +243,10 @@ export default function IDCard() {
             <EditableField label="University Roll No." value={current.universityRollNo} fieldKey="universityRollNo" editing={editing} onChange={handleChange} />
             <EditableField label="HighSchool %" value={current.highSchoolPct} fieldKey="highSchoolPct" editing={editing} onChange={handleChange} />
             <EditableField label="Intermediate %" value={current.intermediatePct} fieldKey="intermediatePct" editing={editing} onChange={handleChange} />
+            <EditableField label="Blood Group" value={current.bloodGroup} fieldKey="bloodGroup" editing={editing} onChange={handleChange} />
+            <EditableField label="Residential Address" value={current.address} fieldKey="address" editing={editing} onChange={handleChange} />
+            <EditableField label="Valid Through" value={current.validThrough} fieldKey="validThrough" editing={editing} onChange={handleChange} />
+            <EditableField label="Emergency Contact" value={current.emergencyContact} fieldKey="emergencyContact" editing={editing} onChange={handleChange} />
             <EditableField label="Status" value={current.status} fieldKey="status" editing={editing} onChange={handleChange} />
           </div>
 
