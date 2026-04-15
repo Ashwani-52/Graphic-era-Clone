@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --geu-blue-dark: #0a4d8c;
+  --geu-blue-mid: #1169b8;
+  --geu-blue-bright: #1a8fe3;
+  --geu-blue-light: #3ab5f7;
+  --geu-header-green: #b8f053;
+  --geu-red: #d32f2f;
+  --geu-orange: #f57c00;
+  --white: #ffffff;
+  --off-white: #f4f6f9;
+  --text-dark: #1a1a2e;
+  --text-muted: #546e7a;
+  --border-light: rgba(255,255,255,0.25);
+  --card-shadow: 0 8px 32px rgba(10, 77, 140, 0.35);
+  --section-shadow: 0 2px 12px rgba(26, 143, 227, 0.12);
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(160deg, #e8f4ff 0%, #d0e8ff 50%, #b8d8f8 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0 40px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+select {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+}
