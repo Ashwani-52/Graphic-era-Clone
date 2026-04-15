@@ -17,100 +17,193 @@ export default function ReportViewer({ onBack }) {
   }, []);
 
   return (
-    <div className="report-viewer-page">
-      {/* Top Navbar */}
-      <div className="report-navbar">
-        <div className="nav-left">
-          <i className="fa fa-arrow-left back-btn" aria-hidden="true" onClick={onBack} title="Back to Home"></i>
-          <span className="nav-title">Graphic Era Deemed to be University</span>
+    <div className="rv-page">
+      {/* Navbar Container */}
+      <div className="rv-top-bar">
+        {/* Mobile menu (only visible on mobile) */}
+        <div className="rv-mobile-menu">
+          <i className="fa fa-bars"></i>
         </div>
-        <div className="nav-center">Report Viewer</div>
-        <div className="nav-right">
-          <div className="profile-icon">
-            <i className="fa fa-user-circle-o" aria-hidden="true"></i>
+
+        <div className="rv-logo-section">
+          <img src="/assets/geu-logo.png" alt="logo" className="rv-geu-logo" />
+        </div>
+        
+        <div className="rv-header-blue">
+          <div className="rv-header-title">| Report Viewer</div>
+          <div className="rv-header-right">
+            <i className="fa fa-bar-chart rv-nav-icon" title="Dashboard"></i>
+            <div className="rv-home-icon-wrap" onClick={onBack} title="Home">
+              <i className="fa fa-home"></i>
+            </div>
+            <span className="rv-username">{student.name || 'STUDENT'}</span>
+            <img src={student.photo || "/assets/geu-logo.png"} alt="profile" className="rv-nav-profile-pic" />
+            <i className="fa fa-caret-down" style={{fontSize: '10px', marginLeft: '3px'}}></i>
           </div>
         </div>
       </div>
 
-      {/* Main Container */}
-      <div className="report-container">
-        {/* Header Image */}
-        <div className="report-header">
-          <img src={headerImg} alt="University Header" className="idcard-header" />
+      {/* Crystal Reports Toolbar */}
+      <div className="rv-toolbar">
+        <div className="rv-tb-group">
+          <div className="rv-tb-icon rv-disabled"><i className="fa fa-fast-backward"></i></div>
+          <div className="rv-tb-icon rv-disabled"><i className="fa fa-caret-left"></i></div>
+          <input type="text" className="rv-page-input" value="1" readOnly />
+          <span className="rv-text">of 1</span>
+          <div className="rv-tb-icon rv-disabled"><i className="fa fa-caret-right"></i></div>
+          <div className="rv-tb-icon rv-disabled"><i className="fa fa-fast-forward"></i></div>
         </div>
-
-        {/* Action Bar */}
-        <div className="action-bar no-print">
-          <button className="print-btn" onClick={() => window.print()}>
-            <i className="fa fa-print" aria-hidden="true"></i> Print ID Card
-          </button>
+        
+        <div className="rv-tb-divider"></div>
+        
+        <div className="rv-tb-group">
+          <div className="rv-tb-icon rv-disabled" style={{transform: 'scaleX(-1)'}}><i className="fa fa-share"></i></div>
+          <input type="text" className="rv-find-input" />
+          <span className="rv-text">Find | Next</span>
         </div>
+        
+        <div className="rv-tb-divider"></div>
+        
+        <div className="rv-tb-group">
+          <div className="rv-export-btn">
+             <img src="/assets/geu-logo.png" style={{opacity: 0}} width="14" alt="stub"/>
+             <i className="fa fa-floppy-o" style={{color: '#2869a8', position:'absolute', left: '2px', top: '1px'}}></i>
+             <i className="fa fa-caret-down" style={{fontSize: '10px', position:'absolute', right: '0px', top: '3px'}}></i>
+          </div>
+          <i className="fa fa-refresh rv-refresh-btn" style={{color: '#2b7fb9'}}></i>
+        </div>
+      </div>
 
-        {/* Content Section */}
-        <div className="idcard-content">
-          <div className="left-section">
-            <div className="photo-container">
-              {student.photo ? (
-                <img src={student.photo} alt="Student" className="report-student-photo" />
-              ) : (
-                <div className="report-photo-placeholder">
-                  <i className="fa fa-user" aria-hidden="true"></i>
+      {/* Report Content */}
+      <div className="rv-content-area">
+        <div className="rv-id-cards-wrapper">
+          
+          {/* FRONT OF ID CARD */}
+          <div className="rv-card-front">
+            <div className="rv-vertical-banner">
+              <span>PROVISIONAL ID CARD</span>
+            </div>
+            <div className="rv-front-main">
+              <img src={headerImg} className="rv-front-header-img" alt="header" />
+              
+              <div className="rv-front-body">
+                <div className="rv-front-photo-wrapper">
+                  {student.photo ? (
+                    <img src={student.photo} className="rv-front-photo" alt="Student" />
+                  ) : (
+                    <div className="rv-photo-placeholder"><i className="fa fa-user"></i></div>
+                  )}
                 </div>
-              )}
-            </div>
-            
-            <div className="student-details-block">
-              <div className="detail-item">
-                <span className="detail-label">Name</span>
-                <span className="detail-value">{student.name || 'N/A'}</span>
-              </div>
-              <div className="detail-item">
-                <span className="detail-label">Course</span>
-                <span className="detail-value">{student.course || 'N/A'}</span>
-              </div>
-              <div className="detail-item">
-                <span className="detail-label">Admission/Enroll No</span>
-                <span className="detail-value">{student.enrollmentNo || 'N/A'}</span>
-              </div>
-              <div className="detail-item">
-                <span className="detail-label">Batch</span>
-                <span className="detail-value">{student.yearSem || 'N/A'}</span>
-              </div>
-              <div className="detail-item">
-                <span className="detail-label">Father's Name</span>
-                <span className="detail-value">{student.fatherName || 'N/A'}</span>
+                
+                <div className="rv-front-details">
+                  <div className="rv-fd-name">{student.name || 'N/A'}</div>
+                  <div className="rv-fd-course">{student.course || 'N/A'}</div>
+                  
+                  <div className="rv-fd-row">
+                    <div className="rv-fd-label">ADMISSION NO.</div>
+                    <div className="rv-fd-colon">:</div>
+                    <div className="rv-fd-val">{student.enrollmentNo || student.enrollNo || 'N/A'}</div>
+                  </div>
+                  
+                  <div className="rv-fd-row">
+                    <div className="rv-fd-label">BATCH</div>
+                    <div className="rv-fd-colon">:</div>
+                    <div className="rv-fd-val">{student.yearSem === '2' ? '2025-2028' : 'N/A'}</div>
+                  </div>
+                  
+                  <div className="rv-fd-row">
+                    <div className="rv-fd-label">FATHER'S NAME</div>
+                    <div className="rv-fd-colon">:</div>
+                    <div className="rv-fd-val">{student.fatherName || 'N/A'}</div>
+                  </div>
+
+                  <div className="rv-fd-enroll-bottom">
+                    {student.enrollmentNo || student.enrollNo || 'N/A'}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="right-section">
-            <div className="detail-item">
-              <span className="detail-label">Contact Number</span>
-              <span className="detail-value">{student.phone || 'N/A'}</span>
+          {/* BACK OF ID CARD */}
+          <div className="rv-card-back">
+            <div className="rv-bk-row">
+              <div className="rv-bk-label">Contact No.</div>
+              <div className="rv-bk-colon">:</div>
+              <div className="rv-bk-val">{student.phone || 'N/A'}</div>
             </div>
-            <div className="detail-item">
-              <span className="detail-label">Blood Group</span>
-              <span className="detail-value">{student.bloodGroup || 'N/A'}</span>
+            <div className="rv-bk-row">
+              <div className="rv-bk-label">Blood Group</div>
+              <div className="rv-bk-colon">:</div>
+              <div className="rv-bk-val">{student.bloodGroup || 'N/A'}</div>
             </div>
-            <div className="detail-item">
-              <span className="detail-label">Email</span>
-              <span className="detail-value">{student.email || student.officialEmail || 'N/A'}</span>
+            <div className="rv-bk-row">
+              <div className="rv-bk-label">E-mail</div>
+              <div className="rv-bk-colon">:</div>
+              <div className="rv-bk-val">{student.email || 'N/A'}</div>
             </div>
-            <div className="detail-item layout-block">
-              <span className="detail-label">Residential Address</span>
-              <span className="detail-value text-block">{student.address || 'N/A'}</span>
+            <div className="rv-bk-row" style={{alignItems: 'flex-start'}}>
+              <div className="rv-bk-label">Resi. Address</div>
+              <div className="rv-bk-colon">:</div>
+              <div className="rv-bk-val" style={{textTransform: 'uppercase'}}>{student.address || 'N/A'}</div>
             </div>
-            <div className="detail-item">
-              <span className="detail-label">Valid Through</span>
-              <span className="detail-value">{student.validThrough || 'N/A'}</span>
+
+            <div className="rv-bk-row rv-mt-10">
+              <div className="rv-bk-label">Valid Through</div>
+              <div className="rv-bk-colon">:</div>
+              <div className="rv-bk-val">{student.validThrough || 'N/A'}</div>
             </div>
-            <div className="detail-item">
-              <span className="detail-label">Emergency Contact</span>
-              <span className="detail-value">{student.emergencyContact || 'N/A'}</span>
+
+            <div className="rv-emergency-row">
+              <div className="rv-emer-details">
+                <span className="rv-txt-red">Emergency Contact</span>
+                <span style={{margin: '0 4px', fontWeight: 'bold'}}>:</span>
+                <span className="rv-emer-val">{student.emergencyContact || 'N/A'}</span>
+              </div>
+              <div className="rv-signature-box">
+                <div className="rv-sig-squiggle"></div>
+                <div className="rv-sig-text">ISSUED BY</div>
+              </div>
+            </div>
+
+            <div className="rv-blue-line"></div>
+
+            <div className="rv-back-footer">
+              <div className="rv-bf-title">If found please return to :</div>
+              <div className="rv-bf-uni">Graphic Era (Deemed to be University)</div>
+              <div className="rv-bf-text">Bell Road, Clement Town Dehradun, Uttarakhand India - 248002</div>
+              <div className="rv-bf-text">Phone No : +91-135-2643421, 2642727</div>
+              <div className="rv-bf-text">www.geu.ac.in</div>
             </div>
           </div>
+
         </div>
       </div>
+
+      {/* Mobile Footer (Matches image 3) */}
+      <div className="rv-mobile-footer">
+        <div className="rv-mf-item" onClick={onBack}>
+          <i className="fa fa-home"></i>
+          <span>Home</span>
+        </div>
+        <div className="rv-mf-item">
+          <i className="fa fa-book"></i>
+          <span>Attendance</span>
+        </div>
+        <div className="rv-mf-item">
+          <i className="fa fa-file-text"></i>
+          <span>Syllabus</span>
+        </div>
+        <div className="rv-mf-item">
+          <i className="fa fa-desktop"></i>
+          <span>Dashboard</span>
+        </div>
+        <div className="rv-mf-item">
+          <i className="fa fa-cog"></i>
+          <span>Settings</span>
+        </div>
+      </div>
+
     </div>
   );
 }
